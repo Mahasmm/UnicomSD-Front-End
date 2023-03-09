@@ -1,0 +1,33 @@
+<div class="container my-5">
+    <h1 class="mb-3">Add new GameBooth</h1>
+    
+   <div class="row">
+    <div class="col-6">
+        <form #form="ngForm" (ngSubmit)="addGameBooth()">
+            <div class="mb-3">
+              <label for="name" class="form-label">Booth Name</label>
+              <input type="text" class="form-control" id="name" name="name" [(ngModel)]="addGameBoothRequest.name" >
+            </div>
+
+            <div class="mb-3">
+                <label for="pricePerHour" class="form-label">Price per Hour</label>
+                <input type="number" class="form-control" id="pricePerHour" name="pricePerHour" [(ngModel)]="addGameBoothRequest.pricePerHour" >
+            </div>
+
+            <div class="mb-3">
+                <label for="sp" class="form-label">Special Features</label>
+                <input type="text" class="form-control" id="sp" name="specialFeatures" [(ngModel)]="addGameBoothRequest.specialFeatures" >
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" class="form-control" id="image" name="image" [(ngModel)]="addGameBoothRequest.image" >
+            </div>
+
+            
+           
+            <button type="submit" class="btn btn-success">Save</button>
+          </form>
+    </div>
+   </div>
+</div>

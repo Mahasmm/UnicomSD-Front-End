@@ -1,0 +1,24 @@
+<div class="container my-5">
+    <h1 class="mb-3 pb-5">Manage Game Booths</h1>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 pb-4" *ngFor="let booth of gameBooths">
+            <div class="card card-box" style="width: 18rem;">
+                <img src="https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?cs=srgb&dl=pexels-lucie-liz-3165335.jpg&fm=jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h6 class="card-title">Name: {{booth.name}}</h6>
+                  <h6 class="card-title">Rs. {{booth.pricePerHour}}  per hour</h6>
+                  <h6 class="card-title">{{booth.specialFeatures}} </h6>
+                  <div class="edit-button">
+                    <div  (click)="DeleteBooth(booth.id)"  class="time-button pt-4 pb-2">
+                      <button  class="btn btn-danger">Delete</button>
+                    </div>
+                    <div class="pt-4">
+                      <button class="btn btn-primary " [routerLink]="['/game-booth', 'edit',booth.id]">Edit</button>
+                    </div>
+                  </div>
+                 
+                </div>
+              </div>
+        </div>
+</div>

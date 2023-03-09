@@ -1,0 +1,83 @@
+<div class="container my-5">
+    <h1 class="mb-3 pb-5">Welcome to GameCity Game Booth</h1>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 pb-4" *ngFor="let booth of gameBooths">
+            <div class="card card-box" style="width: 18rem;">
+                <img src="https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?cs=srgb&dl=pexels-lucie-liz-3165335.jpg&fm=jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h6 class="card-title">Name: {{booth.name}}</h6>
+                  <h6 class="card-title">Rs. {{booth.pricePerHour}}  per hour</h6>
+                  <h6 class="card-title">{{booth.specialFeatures}} </h6>
+                  <div *ngIf="!timeBool || booth.id != bid" (click)="BoothName(booth)" data-bs-toggle="modal" data-bs-target="#startModel" class="time-button pt-2 pb-4">
+                    <button  class="btn btn-success">Start</button>
+                  </div>
+
+                  <div *ngIf="booth.id == bid">
+                    <div *ngIf="timeBool" data-bs-toggle="modal" data-bs-target="#exampleModal" class="time-button pt-2 pb-4">
+                        <button (click)="endTimer()"  class="btn btn-danger">Stop</button>
+                      </div>
+    
+                      <div *ngIf="timeBool" class="timer-box">
+                        <!-- <h6>{{timerValue | date : 'mediumTime'  }}</h6> -->
+                        <h6>{{hours }} : {{minutes}} : {{seconds}} Timer</h6>
+                      </div>
+                  </div>
+                 
+                </div>
+              </div>
+        </div>
+
+     
+        <!-- Start Modal -->
+        <div class="modal fade " id="startModel" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                
+                </div>
+                <div class="modal-body">
+                    <form #form="ngForm" (ngSubmit)="addBooking()">
+                        <div class="mb-3">
+                          <label for="name" class="form-label">Customer Name</label>
+                          <input type="text" class="form-control" id="name" name="customerName" [(ngModel)]="addBookingRequest.customerName" >
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="pricePerHour" class="form-label">Hours</label>
+                            <input type="number" class="form-control" id="pricePerHour" name="hours" [(ngModel)]="addBookingRequest.hours" >
+                        </div>
+
+                        <input type="hidden" name="boothName" value="{{bname}}" [(ngModel)]="bname" >
+                        
+                       
+                        <div class=" modal-footer-button pb-4">
+                            <button (click)="startTimer()" type="submit" class="btn btn-success" data-bs-dismiss="modal">Begin</button> 
+                        </div>
+                      </form>
+                </div>
+                
+            </div>
+            </div>
+        </div>
+
+  
+        <!-- Stop Modal -->
+        <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                </div>
+                <div class="modal-body">
+                <p>The time for the Booth "{{bname}}" has ended for the "{{addBookingRequest.customerName}}" </p>
+                <p>The Amount to be charged is Rs. {{value}}</p>
+                </div>
+                <div class=" modal-footer-button pb-4">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Stop</button>
+             
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
